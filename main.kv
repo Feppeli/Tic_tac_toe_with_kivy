@@ -59,12 +59,24 @@ GerenciadorDeTelas:
 
 <Jogo>
     BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'PLAYER_1 - 1'
         Label:
             text: 'empates - 1'
+        Label:
+            text: 'PLAYER_2 - 1'
 
+    BoxLayout:
         GridLayout:
             cols: 3
             rows: 3
+
+            size: 1,1
+
+            Button:
+                text: "aperte"
+                on_release: root.iniciar_jogo()
 
 
 <TelaFinal>

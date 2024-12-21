@@ -21,9 +21,14 @@ class PlayersName(Screen):
 
         print(f"Jogadores: {self.players}")
 
-class Jogo(Screen):
-    victorys = []
+class Jogo(PlayersName):
 
+    placar = []
+    #jogador 1 = self.players[0]
+    #jogador 2 = self.players[-1]
+
+    def iniciar_jogo(self):
+        print(f"Jogo iniciado, nome dos jogadores: {self.players[0], self.players[-1]}")
 
 
 
