@@ -1,6 +1,8 @@
 GerenciadorDeTelas:
     TelaInicial:
         name: 'telainicial'
+    PlayersName:
+        name: 'playersName'
     Jogo:
         name: 'jogo'
     TelaFinal:
@@ -8,16 +10,54 @@ GerenciadorDeTelas:
 
 <TelaInicial>
     BoxLayout:
+        canvas:
+            Color:
+                rgba: 1,0,0,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
         Label:
             text: 'Bem Vindo!'
-        Button:
-            text: 'Iniciar'
-            on_release: app.root.current = 'jogo'
-        Button:
-            text: 'Sair'
-            on_release: app.stop()
+            size: 100, 100
+        BoxLayout:
+            Button:
+                text: 'Jogar'
+                on_release: app.root.current = 'playersName'
+            Button:
+                text: 'Sair'
+                on_release: app.stop()
 
-<jogo>
+<PlayersName>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Digite o nome dos jogadores'
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            TextInput:
+                id: player_1
+                hint_text: "Nome do primeiro jogador"
+                multiline: False
+
+
+            TextInput:
+                id: player_2
+                hint_text: "Nome do segundo jogador"
+                multiline: False
+
+            Button:
+                text: 'Confirmar'
+                on_release:
+                    root.get_name_player(player_1.text, player_2.text)
+                    app.root.current = 'jogo'
+
+<Jogo>
     BoxLayout:
         Label:
             text: 'empates - 1'
@@ -28,3 +68,7 @@ GerenciadorDeTelas:
 
 
 <TelaFinal>
+    BoxLayout:
+        Button:
+            text: 'Jogar de novo'
+            on_release: app.root.current = 'jogo'
