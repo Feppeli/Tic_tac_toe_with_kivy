@@ -1,0 +1,30 @@
+GerenciadorDeTelas:
+    TelaInicial:
+        name: 'telainicial'
+    Jogo:
+        name: 'jogo'
+    TelaFinal:
+        name: 'telafinal'
+
+<TelaInicial>
+    BoxLayout:
+        Label:
+            text: 'Bem Vindo!'
+        Button:
+            text: 'Iniciar'
+            on_release: app.root.current = 'jogo'
+        Button:
+            text: 'Sair'
+            on_release: app.stop()
+
+<jogo>
+    BoxLayout:
+        Label:
+            text: 'empates - 1'
+
+        GridLayout:
+            cols: 3
+            rows: 3
+
+
+<TelaFinal>
