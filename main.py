@@ -15,7 +15,7 @@ class TelaInicial(Screen):
 class PlayersName(Screen):
     players = []
 
-    def get_name_player(self, player_1, player_2):
+    def get_name_player(self, player_1, player_2): # função para pegar o nome dos jogadores
         self.players.append(player_1)
         self.players.append(player_2)
 
@@ -24,13 +24,26 @@ class PlayersName(Screen):
 class Jogo(PlayersName):
 
     placar = []
-    #jogador 1 = self.players[0]
-    #jogador 2 = self.players[-1]
+    posicoes_jogadas = []
+    posicoes_bloqueadas = []
+    player = "x"
 
     def iniciar_jogo(self):
         print(f"Jogo iniciado, nome dos jogadores: {self.players[0], self.players[-1]}")
 
+    def jogada(self, posicao):
+        if posicao in self.posicoes_bloqueadas:
+            print("Já existe esta jogada")
+            print(self.posicoes_jogadas)
+        else:
+            self.posicoes_bloqueadas.append(posicao)
+            self.posicoes_jogadas.append([posicao, self.player])
+            if self.player == "x":
+                self.player = "O"
+            else:
+                self.player = "x"
 
+            print(self.posicoes_jogadas)
 
 
 #tela final do jogo
