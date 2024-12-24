@@ -31,19 +31,22 @@ class Jogo(PlayersName):
     def iniciar_jogo(self):
         print(f"Jogo iniciado, nome dos jogadores: {self.players[0], self.players[-1]}")
 
-    def jogada(self, posicao):
+    def jogada(self, posicao, button):
         if posicao in self.posicoes_bloqueadas:
             print("Já existe esta jogada")
             print(self.posicoes_jogadas)
         else:
-            self.posicoes_bloqueadas.append(posicao)
-            self.posicoes_jogadas.append([posicao, self.player])
+            self.posicoes_bloqueadas.append(posicao) # guardando a posição para validar se está disponível
+            self.posicoes_jogadas.append([posicao, self.player]) # guardando a jogada e o jogador
+            button.text = self.player
+
             if self.player == "x":
                 self.player = "O"
             else:
                 self.player = "x"
 
             print(self.posicoes_jogadas)
+
 
 
 #tela final do jogo
