@@ -24,28 +24,69 @@ class PlayersName(Screen):
 class Jogo(PlayersName):
 
     placar = []
-    posicoes_jogadas = []
+    posicoes_jogadas = [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]]
     posicoes_bloqueadas = []
-    player = "x"
+    player = "X"
 
     def iniciar_jogo(self):
         print(f"Jogo iniciado, nome dos jogadores: {self.players[0], self.players[-1]}")
 
+    def verificar_vitoria(self):
+        #vertificando o primeiro jogador
+        if self.posicoes_jogadas[0] == [1, "X"] and self.posicoes_jogadas[1] == [2, "X"] and self.posicoes_jogadas[2] == [3, "X"]:
+            self.placar.append(self.players[0])
+            print(f"Vencedor é o: {self.players[0]}")
+        elif self.posicoes_jogadas[3] == [4, "X"] and self.posicoes_jogadas[4] == [5, "X"] and self.posicoes_jogadas[5] == [6, "X"]:
+            self.placar.append(self.players[0])
+            print(f"Vencedor é o: {self.players[0]}")
+        elif self.posicoes_jogadas[6] == [7, "X"] and self.posicoes_jogadas[7] == [8, "X"] and self.posicoes_jogadas[8] == [9, "X"]:
+            self.placar.append(self.players[0])
+            print(f"Vencedor é o: {self.players[0]}")
+        elif self.posicoes_jogadas[0] == [1, "X"] and self.posicoes_jogadas[4] == [5, "X"] and self.posicoes_jogadas[8] == [9, "X"]:
+            self.placar.append(self.players[0])
+            print(f"Vencedor é o: {self.players[0]}")
+        elif self.posicoes_jogadas[2] == [3, "X"] and self.posicoes_jogadas[4] == [5, "X"] and self.posicoes_jogadas[6] == [7, "X"]:
+            self.placar.append(self.players[0])
+            print(f"Vencedor é o: {self.players[0]}")
+        else:
+            #Verificando o segundo jogador
+            if self.posicoes_jogadas[0] == [1, "O"] and self.posicoes_jogadas[1] == [2, "O"] and self.posicoes_jogadas[2] == [3, "O"]:
+                self.placer.append(self.players[-1])
+                print(f"Vencedor é o: {self.players[-1]}")
+            elif self.posicoes_jogadas[3] == [4, "O"] and self.posicoes_jogadas[4] == [5, "O"] and self.posicoes_jogadas[5] == [6, "O"]:
+                self.placer.append(self.players[-1])
+                print(f"Vencedor é o: {self.players[-1]}")
+            elif self.posicoes_jogadas[6] == [7, "O"] and self.posicoes_jogadas[7] == [8, "O"] and self.posicoes_jogadas[8] == [9, "O"]:
+                self.placer.append(self.players[-1])
+                print(f"Vencedor é o: {self.players[-1]}")
+            elif self.posicoes_jogadas[0] == [1, "O"] and self.posicoes_jogadas[4] == [5, "O"] and self.posicoes_jogadas[8] == [9, "O"]:
+                self.placer.append(self.players[-1])
+                print(f"Vencedor é o: {self.players[-1]}")
+            elif self.posicoes_jogadas[2] == [3, "O"] and self.posicoes_jogadas[4] == [5, "O"] and self.posicoes_jogadas[6] == [7, "O"]:
+                self.placer.append(self.players[-1])
+                print(f"Vencedor é o: {self.players[-1]}")
+            else:
+                if len(self.posicoes_bloqueadas) >= 9:
+                    print("empate")
+        print(self.posicoes_jogadas)
+
+
     def jogada(self, posicao, button):
         if posicao in self.posicoes_bloqueadas:
             print("Já existe esta jogada")
-            print(self.posicoes_jogadas)
         else:
             self.posicoes_bloqueadas.append(posicao) # guardando a posição para validar se está disponível
-            self.posicoes_jogadas.append([posicao, self.player]) # guardando a jogada e o jogador
+            #self.posicoes_jogadas.append([posicao, self.player]) # guardando a jogada e o jogador
+            index = posicao - 1
+            self.posicoes_jogadas[index] = [posicao, self.player]
             button.text = self.player
 
-            if self.player == "x":
+            if self.player == "X":
                 self.player = "O"
             else:
-                self.player = "x"
+                self.player = "X"
 
-            print(self.posicoes_jogadas)
+            self.verificar_vitoria()
 
 
 
